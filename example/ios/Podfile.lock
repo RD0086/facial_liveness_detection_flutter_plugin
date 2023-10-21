@@ -1,0 +1,28 @@
+PODS:
+  - facial_liveness_detection_flutter_plugin (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - facial_liveness_detection_flutter_plugin (from `.symlinks/plugins/facial_liveness_detection_flutter_plugin/ios`)
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+
+EXTERNAL SOURCES:
+  facial_liveness_detection_flutter_plugin:
+    :path: ".symlinks/plugins/facial_liveness_detection_flutter_plugin/ios"
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+SPEC CHECKSUMS:
+  facial_liveness_detection_flutter_plugin: 69f5725eeb4a537346526d4990ca6a6fec91875b
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+
+PODFILE CHECKSUM: 02caaa843f6501172c0d470d80e72f61175c8b93
+
+COCOAPODS: 1.13.0
