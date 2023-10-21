@@ -34,8 +34,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _esfaceidFlutterPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      _esfaceidFlutterPlugin.initEngine();
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -44,10 +43,6 @@ class _MyAppState extends State<MyApp> {
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
     if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   String generateRandomNonce() {

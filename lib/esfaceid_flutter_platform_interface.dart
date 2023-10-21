@@ -24,7 +24,7 @@ abstract class EsfaceidFlutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  void initEngine() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 

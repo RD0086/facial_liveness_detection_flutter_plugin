@@ -13,9 +13,8 @@ class MethodChannelEsfaceidFlutter extends EsfaceidFlutterPlatform {
   final methodChannel = const MethodChannel('esfaceid_flutter');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  void initEngine() async {
+    methodChannel.invokeMethod<String>('initEngine');
   }
 
   @override

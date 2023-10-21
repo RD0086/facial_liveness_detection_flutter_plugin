@@ -2,8 +2,8 @@
 import 'esfaceid_flutter_platform_interface.dart';
 typedef Function2<String> = void Function(String result);
 class EsfaceidFlutter {
-  Future<String?> getPlatformVersion() {
-    return EsfaceidFlutterPlatform.instance.getPlatformVersion();
+  void initEngine() {
+    return EsfaceidFlutterPlatform.instance.initEngine();
   }
 
   Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){

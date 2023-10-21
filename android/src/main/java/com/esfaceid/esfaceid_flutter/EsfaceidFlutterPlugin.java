@@ -53,7 +53,11 @@ public class EsfaceidFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("startLivingDetect")) {
+    if (call.method.equals("initEngine")){
+      EsLivingDetectionManager.Init();
+      Log.i("onMethodCall", "全局初始化引擎");
+    }
+    else if (call.method.equals("startLivingDetect")) {
       // 获取传递的JSON数据
       Map<String, Object> options = (Map<String, Object>) call.arguments;
       if(!options.containsKey("token")){
