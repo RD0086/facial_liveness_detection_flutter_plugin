@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
                 final String apiUrl = 'http://eface.market.alicloudapi.com/init';
                 final Map<String, String> headers = {
                   'Content-Type': 'application/x-www-form-urlencoded', // 设置请求头
-                  'Authorization': 'APPCODE 1c06d88bc47b4a4dbb709c48ebe6bf97', // 添加其他请求头字段
+                  'Authorization': 'APPCODE 替换为你的APPCODE', // 添加其他请求头字段
                   'X-Ca-Nonce': generateRandomNonce(), // 添加其他请求头字段
                 };
 
