@@ -6,12 +6,12 @@
 
 ## 插件API接口说明
 
-#### android 调用初始化
+#### 引擎初始化
 ```java
 /**
- * SDK初始化。为了提升性能，建议在在application提前调用，否则获取token时间会比较长
+ * 引擎初始化
  */
-LivingDetectionModule.Init();
+void initEngine()
 ```
 
 #### 认证初始化
@@ -43,6 +43,7 @@ LivingDetectionModule.Init();
  *    "data": "......" -- 执行结果数据
  * }
  */
+Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> jsonData){
  ```
 
  #### 发起活体认证
@@ -59,7 +60,9 @@ LivingDetectionModule.Init();
   *      "token": "" -- 本次认证token
   * }
   */
+Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){
 ```
+
 ## 页面样式修改
 #### Android
 ![ANDRIOID STYLE](http://open.esandcloud.com/index.php/s/D44uyRlrzr3TQqQ/download)

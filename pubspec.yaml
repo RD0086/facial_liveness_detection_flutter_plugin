@@ -6,7 +6,7 @@ homepage: "https://esandinfo.yuque.com/pd7qxf/zd7dgn"
 environment:
   sdk: '>=3.1.4 <4.0.0'
   flutter: '>=3.3.0'
-  
+
 dependencies:
   flutter:
     sdk: flutter
