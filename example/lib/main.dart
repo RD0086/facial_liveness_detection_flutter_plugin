@@ -69,7 +69,6 @@ class _MyAppState extends State<MyApp> {
                 "age": 30,
               };
 
-              // 1. 认证初始化
               Map<String, dynamic> result = await _FacialLivenessDetectionFlutterPluginPlugin.verifyInit(config) ?? {};
               String code = result['code'];
               String initMsg = result['data'];
@@ -77,11 +76,10 @@ class _MyAppState extends State<MyApp> {
               print("msg" + result['msg']);
               print("data" + result['data']);
               if(code == "ELD_SUCCESS"){
-                // 2. 获取认证授权
                 final String apiUrl = 'http://eface.market.alicloudapi.com/init';
                 final Map<String, String> headers = {
                   'Content-Type': 'application/x-www-form-urlencoded', // 设置请求头
-                  'Authorization': 'APPCODE 替换为你的APPCODE', // 添加其他请求头字段 (注意不可泄露，建议通过服务器端请求网关，然后APP请求服务器端进行数据转发）
+                  'Authorization': 'APPCODE 1c06d88bc47b4a4dbb709c48ebe6bf97', // 添加其他请求头字段
                   'X-Ca-Nonce': generateRandomNonce(), // 添加其他请求头字段
                 };
 
@@ -102,14 +100,11 @@ class _MyAppState extends State<MyApp> {
                 if (response.statusCode == 200) {
                   print(response.body);
                   Map<String, dynamic> resultBody = json.decode(response.body);
-                  // 3. 发起活体检测
                   Map<String, dynamic> resultxxx = await _FacialLivenessDetectionFlutterPluginPlugin.startLivingDetect({"token": resultBody['token'],
                   "cameraID": "REAR"}) ?? {};
                   print("code" + resultxxx['code']);
                   print("msg" + resultxxx['msg']);
                   print("data" + resultxxx['data']);
-                  // 4. 获取认证结果
-                  // TODO 
                 } else {
                   throw Exception('Failed to make POST request');
                 }
