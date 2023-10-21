@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:esfaceid_flutter/esfaceid_flutter.dart';
+import 'package:facial_liveness_detection_flutter_plugin/facial_liveness_detection_flutter_plugin.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
 
@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  final _esfaceidFlutterPlugin = EsfaceidFlutter();
+  final _FacialLivenessDetectionFlutterPluginPlugin = FacialLivenessDetectionFlutterPlugin();
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      _esfaceidFlutterPlugin.initEngine();
+      _FacialLivenessDetectionFlutterPluginPlugin.initEngine();
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                 "age": 30,
               };
 
-              Map<String, dynamic> result = await _esfaceidFlutterPlugin.verifyInit(config) ?? {};
+              Map<String, dynamic> result = await _FacialLivenessDetectionFlutterPluginPlugin.verifyInit(config) ?? {};
               String code = result['code'];
               String initMsg = result['data'];
               print("code" + result['code']);
@@ -100,7 +100,7 @@ class _MyAppState extends State<MyApp> {
                 if (response.statusCode == 200) {
                   print(response.body);
                   Map<String, dynamic> resultBody = json.decode(response.body);
-                  Map<String, dynamic> resultxxx = await _esfaceidFlutterPlugin.startLivingDetect({"token": resultBody['token'],
+                  Map<String, dynamic> resultxxx = await _FacialLivenessDetectionFlutterPluginPlugin.startLivingDetect({"token": resultBody['token'],
                   "cameraID": "REAR"}) ?? {};
                   print("code" + resultxxx['code']);
                   print("msg" + resultxxx['msg']);

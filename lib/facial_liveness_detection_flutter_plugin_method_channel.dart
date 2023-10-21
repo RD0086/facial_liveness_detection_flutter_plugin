@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'esfaceid_flutter_platform_interface.dart';
+import 'facial_liveness_detection_flutter_plugin_platform_interface.dart';
 
-/// An implementation of [EsfaceidFlutterPlatform] that uses method channels.
-class MethodChannelEsfaceidFlutter extends EsfaceidFlutterPlatform {
+/// An implementation of [FacialLivenessDetectionFlutterPluginPlatform] that uses method channels.
+class MethodChannelFacialLivenessDetectionFlutterPlugin extends FacialLivenessDetectionFlutterPluginPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('esfaceid_flutter');
+  final methodChannel = const MethodChannel('facial_liveness_detection_flutter_plugin');
 
   @override
   void initEngine() async {

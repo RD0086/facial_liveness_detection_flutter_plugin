@@ -49,7 +49,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
-  esfaceid_flutter:
+  facial_liveness_detection_flutter_plugin:
     dependency: "direct main"
     description:
       path: ".."

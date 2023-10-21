@@ -1,11 +1,11 @@
-#import "EsfaceidFlutterPlugin.h"
+#import "FacialLivenessDetectionFlutterPluginPlugin.h"
 
-@implementation EsfaceidFlutterPlugin
+@implementation FacialLivenessDetectionFlutterPluginPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
-      methodChannelWithName:@"esfaceid_flutter"
+      methodChannelWithName:@"facial_liveness_detection_flutter_plugin"
             binaryMessenger:[registrar messenger]];
-  EsfaceidFlutterPlugin* instance = [[EsfaceidFlutterPlugin alloc] init];
+  FacialLivenessDetectionFlutterPluginPlugin* instance = [[FacialLivenessDetectionFlutterPluginPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 

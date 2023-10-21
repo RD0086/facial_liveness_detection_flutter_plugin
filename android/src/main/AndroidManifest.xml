@@ -1,3 +1,3 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.esfaceid.esfaceid_flutter">
+  package="com.esfaceid.facial_liveness_detection_flutter_plugin">
 </manifest>

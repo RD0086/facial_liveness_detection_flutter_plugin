@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface EsfaceidFlutterPlugin : NSObject<FlutterPlugin>
+@interface FacialLivenessDetectionFlutterPluginPlugin : NSObject<FlutterPlugin>
 @end

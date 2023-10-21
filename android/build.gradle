@@ -1,4 +1,4 @@
-group 'com.esfaceid.esfaceid_flutter'
+group 'com.esfaceid.facial_liveness_detection_flutter_plugin'
 version '1.0'
 
 buildscript {
@@ -49,7 +49,7 @@ apply plugin: 'com.android.library'
 
 android {
     if (project.android.hasProperty("namespace")) {
-        namespace 'com.esfaceid.esfaceid_flutter'
+        namespace 'com.esfaceid.facial_liveness_detection_flutter_plugin'
     }
 
     compileSdkVersion 33

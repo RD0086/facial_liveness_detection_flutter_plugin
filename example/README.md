@@ -1,6 +1,6 @@
-# esfaceid_flutter_example
+# facial_liveness_detection_flutter_plugin_example
 
-Demonstrates how to use the esfaceid_flutter plugin.
+Demonstrates how to use the facial_liveness_detection_flutter_plugin plugin.
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-package com.esfaceid.esfaceid_flutter;
+package com.esfaceid.facial_liveness_detection_flutter_plugin;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -15,10 +15,10 @@ import org.junit.Test;
  * you can run them directly from IDEs that support JUnit such as Android Studio.
  */
 
-public class EsfaceidFlutterPluginTest {
+public class FacialLivenessDetectionFlutterPluginPluginTest {
   @Test
   public void onMethodCall_getPlatformVersion_returnsExpectedValue() {
-    EsfaceidFlutterPlugin plugin = new EsfaceidFlutterPlugin();
+    FacialLivenessDetectionFlutterPluginPlugin plugin = new FacialLivenessDetectionFlutterPluginPlugin();
 
     final MethodCall call = new MethodCall("getPlatformVersion", null);
     MethodChannel.Result mockResult = mock(MethodChannel.Result.class);

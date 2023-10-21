@@ -10,7 +10,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:esfaceid_flutter/esfaceid_flutter.dart';
+import 'package:facial_liveness_detection_flutter_plugin/facial_liveness_detection_flutter_plugin.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

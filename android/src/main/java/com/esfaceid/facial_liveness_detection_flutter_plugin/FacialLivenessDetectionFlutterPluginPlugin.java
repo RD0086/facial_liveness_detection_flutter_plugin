@@ -1,8 +1,6 @@
-package com.esfaceid.esfaceid_flutter;
+package com.esfaceid.facial_liveness_detection_flutter_plugin;
 
-import android.app.Activity;
 import android.util.Log;
-import android.util.Printer;
 
 import androidx.annotation.NonNull;
 
@@ -14,8 +12,6 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import com.alibaba.fastjson.JSONObject;
 import com.esandinfo.livingdetection.EsLivingDetectionManager;
-import com.esandinfo.livingdetection.bean.EsCryptKeyType;
-import com.esandinfo.livingdetection.bean.EsLDTInitConfig;
 import com.esandinfo.livingdetection.bean.EsLivingDetectResult;
 import com.esandinfo.livingdetection.bean.EsTitleLanguage;
 import com.esandinfo.livingdetection.biz.EsLivingDetectCallback;
@@ -26,8 +22,8 @@ import com.esandinfo.livingdetection.util.StringUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-/** EsfaceidFlutterPlugin */
-public class EsfaceidFlutterPlugin implements FlutterPlugin, MethodCallHandler {
+/** FacialLivenessDetectionFlutterPluginPlugin */
+public class FacialLivenessDetectionFlutterPluginPlugin implements FlutterPlugin, MethodCallHandler {
   private Map<String, Object> transEsfaceIdResult2Map(EsLivingDetectResult esLivingDetectResult){
     Map<String, Object> result = new HashMap<>();
     result.put("code", esLivingDetectResult.getCode().name());
@@ -46,7 +42,7 @@ public class EsfaceidFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "esfaceid_flutter");
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "facial_liveness_detection_flutter_plugin");
     channel.setMethodCallHandler(this);
     manager = new EsLivingDetectionManager(flutterPluginBinding.getApplicationContext());
   }

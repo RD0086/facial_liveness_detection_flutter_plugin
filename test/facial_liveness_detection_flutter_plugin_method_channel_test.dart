@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  const MethodChannel channel = MethodChannel('esfaceid_flutter');
+  const MethodChannel channel = MethodChannel('facial_liveness_detection_flutter_plugin');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(

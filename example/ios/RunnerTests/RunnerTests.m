@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@import esfaceid_flutter;
+@import facial_liveness_detection_flutter_plugin;
 
 // This demonstrates a simple unit test of the Objective-C portion of this plugin's implementation.
 //
@@ -15,7 +15,7 @@
 @implementation RunnerTests
 
 - (void)testExample {
-  EsfaceidFlutterPlugin *plugin = [[EsfaceidFlutterPlugin alloc] init];
+  FacialLivenessDetectionFlutterPluginPlugin *plugin = [[FacialLivenessDetectionFlutterPluginPlugin alloc] init];
 
   FlutterMethodCall *call = [FlutterMethodCall methodCallWithMethodName:@"getPlatformVersion"
                                                               arguments:nil];

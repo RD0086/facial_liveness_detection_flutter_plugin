@@ -1,4 +1,4 @@
-# esfaceid_flutter
+# facial_liveness_detection_flutter_plugin
 
 A new Flutter plugin project.
 

@@ -1,4 +1,4 @@
-name: esfaceid_flutter
+name: facial_liveness_detection_flutter_plugin
 description: 前端活体检测插件 1.0.0
 version: 1.0.0
 homepage: "https://esandinfo.yuque.com/pd7qxf/zd7dgn"
@@ -35,10 +35,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.esfaceid.esfaceid_flutter
-        pluginClass: EsfaceidFlutterPlugin
+        package: com.esfaceid.facial_liveness_detection_flutter_plugin
+        pluginClass: FacialLivenessDetectionFlutterPluginPlugin
       ios:
-        pluginClass: EsfaceidFlutterPlugin
+        pluginClass: FacialLivenessDetectionFlutterPluginPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

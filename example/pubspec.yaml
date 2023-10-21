@@ -1,5 +1,5 @@
-name: esfaceid_flutter_example
-description: Demonstrates how to use the esfaceid_flutter plugin.
+name: facial_liveness_detection_flutter_plugin_example
+description: Demonstrates how to use the facial_liveness_detection_flutter_plugin plugin.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -17,9 +17,9 @@ dependencies:
   flutter:
     sdk: flutter
   http: '>=0.11.3+12'
-  esfaceid_flutter:
+  facial_liveness_detection_flutter_plugin:
     # When depending on this package from a real application you should use:
-    #   esfaceid_flutter: ^x.y.z
+    #   facial_liveness_detection_flutter_plugin: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
