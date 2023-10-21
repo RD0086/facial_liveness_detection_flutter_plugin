@@ -1,6 +1,4 @@
-import 'package:esfaceid_flutter/esfaceid_flutter.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
 import 'esfaceid_flutter_method_channel.dart';
 
 abstract class EsfaceidFlutterPlatform extends PlatformInterface {
