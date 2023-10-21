@@ -6,8 +6,8 @@ class EsfaceidFlutter {
     return EsfaceidFlutterPlatform.instance.getPlatformVersion();
   }
 
-  void startFaceVerify(Function2<String> resultCallback){
-    return EsfaceidFlutterPlatform.instance.startFaceVerify(resultCallback);
+  Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){
+    return EsfaceidFlutterPlatform.instance.startLivingDetect(params);
   }
 
   Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> jsonData){

@@ -18,7 +18,9 @@ import com.esandinfo.livingdetection.bean.EsCryptKeyType;
 import com.esandinfo.livingdetection.bean.EsLDTInitConfig;
 import com.esandinfo.livingdetection.bean.EsLivingDetectResult;
 import com.esandinfo.livingdetection.bean.EsTitleLanguage;
+import com.esandinfo.livingdetection.biz.EsLivingDetectCallback;
 import com.esandinfo.livingdetection.constants.EsLivingDetectErrorCode;
+import com.esandinfo.livingdetection.util.MyLog;
 import com.esandinfo.livingdetection.util.StringUtil;
 
 import java.util.HashMap;
@@ -51,12 +53,39 @@ public class EsfaceidFlutterPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("getPlatformVersion")) {
-      result.success("Android " + android.os.Build.VERSION.RELEASE);
-    }else if (call.method.equals("startFaceVerify")) {
-      Log.i("LLL", "hello wroldxxx");
-      // 向Dart发送通知
-      channel.invokeMethod("onFaceVerifyResult", "来自刷脸认证的结果信息");
+    if (call.method.equals("startLivingDetect")) {
+      // 获取传递的JSON数据
+      Map<String, Object> options = (Map<String, Object>) call.arguments;
+      if(!options.containsKey("token")){
+        result.success(JSONObject.toJSONString(new EsLivingDetectResult(EsLivingDetectErrorCode.ELD_PARAME_ERROR, "传入token为空", "")));
+        return;
+      }
+
+      String token = (String) options.get("token");
+      if (manager==null) {
+        result.success(JSONObject.toJSONString(new EsLivingDetectResult(EsLivingDetectErrorCode.ELD_PARAME_ERROR, "请先执行初始化", "")));
+        return;
+      }
+
+      String cameraID = "1";
+      if (options.containsKey("cameraID")) {
+        if (cameraID.equals("FRONT")) { // 前置摄像头
+          cameraID = "1";
+        } else if (cameraID.equals("REAR")) { // 后置摄像头
+          cameraID = "0";
+        } else {
+          cameraID = "1";
+        }
+      }
+
+      manager.startLivingDetect(cameraID, token, new EsLivingDetectCallback() {
+        @Override
+        public void onFinish(EsLivingDetectResult esLivingDetectResult) {
+          String resultJson = JSONObject.toJSONString(esLivingDetectResult);
+          MyLog.info("startLivingDetect result: "+resultJson);
+          result.success(resultJson);
+        }
+      });
     }else if (call.method.equals("verifyInit")){
       // 获取传递的JSON数据
       Map<String, Object> options = (Map<String, Object>) call.arguments;

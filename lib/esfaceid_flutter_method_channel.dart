@@ -19,17 +19,9 @@ class MethodChannelEsfaceidFlutter extends EsfaceidFlutterPlatform {
   }
 
   @override
-  void startFaceVerify(Function callback) async{
-    methodChannel.setMethodCallHandler((call){
-        if(call.method == "onFaceVerifyResult"){
-            String result = call.arguments;
-            callback(result);
-        }
-
-        return Future.value(nullptr);
-    });
-
-    methodChannel.invokeMethod('startFaceVerify');
+  Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params) async{
+    String result = await methodChannel.invokeMethod('startLivingDetect', params);
+    return json.decode(result);
   }
 
   @override

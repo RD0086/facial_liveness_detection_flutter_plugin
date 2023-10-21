@@ -16,7 +16,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  http: '>=0.11.3+12'
   esfaceid_flutter:
     # When depending on this package from a real application you should use:
     #   esfaceid_flutter: ^x.y.z

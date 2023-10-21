@@ -12,13 +12,14 @@ class MockEsfaceidFlutterPlatform
   Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
-  void startFaceVerify(Function2<String> callback) {
-    // TODO: implement startFaceVerify
+  Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> config) {
+    // TODO: implement verifyInit
+    throw UnimplementedError();
   }
 
   @override
-  Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> config) {
-    // TODO: implement verifyInit
+  Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params) {
+    // TODO: implement startLivingDetect
     throw UnimplementedError();
   }
 }

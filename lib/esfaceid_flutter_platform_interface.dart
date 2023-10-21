@@ -28,7 +28,7 @@ abstract class EsfaceidFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  void startFaceVerify(Function2<String> callback) async{
+  Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params) async{
     throw UnimplementedError('startFaceVerify() has not been implemented.');
   }
 
