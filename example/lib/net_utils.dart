@@ -2,6 +2,8 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+// * 注意，这段代码要写在服务器上，建议通过服务器把数据转发给网关，避免密钥泄露！
+
 String APPCODE = ""; // 替换为你的APPCODE
 String generateRandomNonce() {
   // 生成随机数作为 X-Ca-Nonce 的值
