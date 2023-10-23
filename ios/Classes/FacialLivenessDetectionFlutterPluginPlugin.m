@@ -10,6 +10,38 @@
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 
+- (UIViewController *)topViewController {
+    UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topViewController.presentedViewController) {
+        topViewController = topViewController.presentedViewController;
+    }
+    
+    return topViewController;
+}
+
+- (NSString*)ldtResult2String:(EsLivingDetectResult*)ldtResult{
+    NSDictionary *dataDictionary = @{
+        @"code": [ldtResult getCodeStr],
+        @"data": ldtResult.data == nil ? @"" : ldtResult.data,
+        @"msg": ldtResult.msg == nil ? @"" : ldtResult.msg,
+        @"token": ldtResult.token == nil ? @"" : ldtResult.token
+    };
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDictionary
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+
+    if (!error) {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return jsonString;
+    } else {
+        NSLog(@"Error converting dictionary to JSON: %@", error);
+        return @"";
+    }
+}
+
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   if ([@"initEngine" isEqualToString:call.method]) {
     result([NSString stringWithFormat:@"{\"code\":\"%@\", \"msg\":\"%@\", \"data\":\"%@\"}" ,
@@ -99,26 +131,31 @@
           [ldtResult initWithCode:ELD_EXCEPTION msg:e.reason data: @""];
       }
       
-      NSDictionary *dataDictionary = @{
-          @"code": [ldtResult getCodeStr],
-          @"data": ldtResult.data == nil ? @"" : ldtResult.data,
-          @"msg": ldtResult.msg == nil ? @"" : ldtResult.msg,
-          @"token": ldtResult.token == nil ? @"" : ldtResult.token
-      };
-
-      NSError *error;
-      NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dataDictionary
-                                                         options:NSJSONWritingPrettyPrinted
-                                                           error:&error];
-
-      if (!error) {
-          NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-          NSLog(@"JSON String: %@", jsonString);
-          result(jsonString);
-      } else {
-          NSLog(@"Error converting dictionary to JSON: %@", error);
+      result([self ldtResult2String:ldtResult]);
+  }
+  else if([@"startLivingDetect" isEqualToString:call.method]){
+      EsLivingDetectResult* ldtResult = [EsLivingDetectResult alloc];
+      @try {
+          do {
+              // options 为 js 端调用此方法时传递的参数
+              NSDictionary * options = (NSDictionary *)call.arguments;
+              NSString *token =   [options objectForKey:@"token"];
+              // livingType，不可为空
+              if (token == nil) {
+                  [ldtResult initWithCode:ELD_PARAME_ERROR msg:@"token" data: @""];
+                  result([self ldtResult2String:ldtResult]);
+                  break;
+              }
+              
+              [EsLivingDetectionManager startDetect2:token viewController:[self topViewController] callback:^(EsLivingDetectResult * _Nonnull ldtResult) {
+                  result([self ldtResult2String:ldtResult]);
+              } windowSwitchType:2];
+          }while (NO);
+      } @catch(NSException* e) {
+          [ldtResult initWithCode:ELD_EXCEPTION msg:e.reason data: @""];
       }
-  }else{
+  }
+  else {
       result(FlutterMethodNotImplemented);
   }
 }
