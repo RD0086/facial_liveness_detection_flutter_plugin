@@ -81,6 +81,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(NSString *)getSdkVersion;
 
+/**
+ * 开启ocr 人脸认证
+ * @param viewController 当前viewController
+ * @param type ocr类型 1: 使用
+ */
++ (void) startOcrFaceAuth : (UIViewController*)viewController token:(NSString *)token callback:(EsLivingDetectCallback) callback;
+
 @end
 
 NS_ASSUME_NONNULL_END

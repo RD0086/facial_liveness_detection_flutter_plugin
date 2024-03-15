@@ -18,6 +18,8 @@ typedef enum CRYPT_KEY_TYPE{
     TEST
 }CRYPT_KEY_TYPE;
 
+static NSString* BaseURL;
+
 /**
  * 活体检测配置
  */
@@ -79,6 +81,32 @@ typedef enum CRYPT_KEY_TYPE{
 -(BOOL) GetUseStrictMode;
 
 -(void) SetUseStrictMode:(BOOL)value;
+
+-(void) SetOcrIncFront:(BOOL)value;
+
+-(BOOL) GetOcrIncFront;
+
+-(void) SetOcrFirst:(BOOL)value;
+
+-(BOOL) GetOcrFirst;
+
+-(void) SetWithOcr:(BOOL)value;
+
+-(BOOL) GetWithOcr;
+
+-(void) SetNavigateShow:(BOOL)value;
+
+-(BOOL) GetNavigate;
+
+-(void) SetMode:(int)value;
+
+-(BOOL) GetMode;
+
++ (void) SetBaseURL:(NSString*)value;
+/**
+ * 获取服务器基地址
+ */
++ (NSString*) GetBaseURL;
 @end
 
 NS_ASSUME_NONNULL_END
