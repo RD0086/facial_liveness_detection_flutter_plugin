@@ -1,7 +1,7 @@
 class HttpUtils{
     getHttpRequest(type, path, useAjax){
         const Http = new XMLHttpRequest();
-        const url=`http://127.0.0.1:8080${path}`;
+        const url=`http://127.0.0.1:32195${path}`;
         Http.open(type, url, useAjax);
         return Http;
     }
@@ -84,7 +84,7 @@ var InputUserInfo = new HttpUtils();
 
 function putLog(text){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/put_log';
+    const url='http://127.0.0.1:32195/put_log';
     Http.open("POST", url, true);
     Http.send(text);
 }
@@ -115,7 +115,7 @@ function createInput(name,value){
 
 function getOCRBackResult(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/get_ocr_back_result';
+    const url='http://127.0.0.1:32195/get_ocr_back_result';
     Http.open("POST", url, false);
     Http.send();
     return Http.responseText;
@@ -123,14 +123,14 @@ function getOCRBackResult(){
 
 function exit(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/exit';
+    const url='http://127.0.0.1:32195/exit';
     Http.open("POST", url);
     Http.send();
 }
 
 function getToken(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/get_token';
+    const url='http://127.0.0.1:32195/get_token';
     Http.open("POST", url, false);
     Http.send();
     return Http.responseText;

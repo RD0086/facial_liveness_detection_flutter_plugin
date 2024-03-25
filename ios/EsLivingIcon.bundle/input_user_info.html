@@ -45,8 +45,8 @@
     </div>
     <form action="getInputData" method="post" onsubmit="return false;">
         <div class="form">
-            <div><label>姓名</label>:<input id="id_name" name="id_name" value="张三" onfocus="clearMsg()" /></div>
-            <div><label>身份证号</label>:<input id="id_number" name="id_number" value="341324200305031549" onfocus="clearMsg()" /></div>
+            <div><label>姓名</label>:<input id="id_name" name="id_name" value="" onfocus="clearMsg()" /></div>
+            <div><label>身份证号</label>:<input id="id_number" name="id_number" value="" onfocus="clearMsg()" /></div>
         </div>
         <div class="msg">
 
@@ -120,7 +120,7 @@
 
     function logout(){
         const Http = new XMLHttpRequest();
-        const url='http://127.0.0.1:8080/exit';
+        const url='http://127.0.0.1:32195/exit';
         Http.open("POST", url);
         Http.send();
     }

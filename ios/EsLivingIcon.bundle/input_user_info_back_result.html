@@ -2492,9 +2492,12 @@
         var id_name = $("#0").val();
         var id_number = $("#1").val();
         putLog("token:" + token);
+        $("#loadingTitle").text("请稍后...");
+        $("#loading").show();
         try{
             putLog("请求axios")
             InputUserInfo.uploadIDAndName(id_number, id_name, token, resStr=>{
+                $("#loading").hide();
                 putLog("回调结果" + resStr);
                 let res = JSON.parse(resStr);
                 if (res) {
