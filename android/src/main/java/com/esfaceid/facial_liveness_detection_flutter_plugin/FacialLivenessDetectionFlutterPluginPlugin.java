@@ -12,6 +12,8 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import com.alibaba.fastjson.JSONObject;
 import com.esandinfo.livingdetection.EsLivingDetectionManager;
+import com.esandinfo.livingdetection.bean.EsCryptKeyType;
+import com.esandinfo.livingdetection.bean.EsLDTInitConfig;
 import com.esandinfo.livingdetection.bean.EsLivingDetectResult;
 import com.esandinfo.livingdetection.bean.EsTitleLanguage;
 import com.esandinfo.livingdetection.biz.EsLivingDetectCallback;
@@ -86,7 +88,7 @@ public class FacialLivenessDetectionFlutterPluginPlugin implements FlutterPlugin
           result.success(resultJson);
         }
       });
-    }else if (call.method.equals("verifyInit")){
+    } else if (call.method.equals("verifyInit")){
       // 获取传递的JSON数据
       Map<String, Object> options = (Map<String, Object>) call.arguments;
       if(!options.containsKey("livingType")){
@@ -148,21 +150,37 @@ public class FacialLivenessDetectionFlutterPluginPlugin implements FlutterPlugin
       }
 
       EsLivingDetectResult esLivingDetectResult = null;
+      EsLDTInitConfig config = new EsLDTInitConfig(livingType);
+      config.setNavigate(false); // 导航栏
       if(options.containsKey("language")){
         String languageStr = (String) options.get("language");
         if(StringUtil.isBlank(languageStr)){
-          esLivingDetectResult = manager.verifyInit(livingType, EsTitleLanguage.CN);
-        }else if("CN".equalsIgnoreCase(languageStr)){
-          esLivingDetectResult = manager.verifyInit(livingType, EsTitleLanguage.CN);
-        }else if("JP".equalsIgnoreCase(languageStr)){
-          esLivingDetectResult = manager.verifyInit(livingType, EsTitleLanguage.JP);
-        }else{
-          esLivingDetectResult = manager.verifyInit(livingType, EsTitleLanguage.CN);
+          config.setTitleLanguage(EsTitleLanguage.CN);
         }
-      }else{
-        esLivingDetectResult = manager.verifyInit(livingType);
+        else if("CN".equalsIgnoreCase(languageStr)){
+          config.setTitleLanguage(EsTitleLanguage.CN); // 简体中文
+        }
+        else if("JP".equalsIgnoreCase(languageStr)){
+          config.setTitleLanguage(EsTitleLanguage.JP); // 日文
+        }
+        else if("TCN".equalsIgnoreCase(languageStr)){
+          config.setTitleLanguage(EsTitleLanguage.TCN); // 繁体中文
+        }
+        else if("KR".equalsIgnoreCase(languageStr)){
+          config.setTitleLanguage(EsTitleLanguage.KR); // 韩文
+        }
+        else if("EN".equalsIgnoreCase(languageStr)){
+          config.setTitleLanguage(EsTitleLanguage.EN); // 英文
+        }
+        else if("THA".equalsIgnoreCase(languageStr)){
+          config.setTitleLanguage(EsTitleLanguage.THA); // 泰文
+        }
+        else{
+          config.setTitleLanguage(EsTitleLanguage.CN);
+        }
       }
 
+      esLivingDetectResult = manager.verifyInit(config);
       result.success(JSONObject.toJSONString((esLivingDetectResult)));
     }
     else {

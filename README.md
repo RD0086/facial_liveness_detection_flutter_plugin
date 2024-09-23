@@ -28,7 +28,7 @@ void initEngine()
  *     progressEndGradient：界面样式-进度条渐变结束颜色
  *     backGroundColor：界面样式-页面背景颜色
  *     circleBackWidth：界面样式-进度条宽度
- *     language: 界面显示的语言（不分大小写），“CN”:中文，“JP”: 日文，"KR": 韩文
+ *     language: 界面显示的语言（不分大小写），“CN”:中文，“TCN”： 繁体中文， “JP”: 日文，"KR": 韩文， “EN”: 英文，“THA”: 泰文
  *     visitedStepBorderDotColor：多动作导航的边框颜色, 如 #FFC0CB
  *     visitedStepFillDotColor： 完成步骤点的填充颜色, 如 #FFC0CB
  *     nextStepBorderDotColor： 下一步骤点的填充颜色, 如 #FFC0CB

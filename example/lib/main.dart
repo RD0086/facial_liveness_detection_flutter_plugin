@@ -19,7 +19,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   final _FacialLivenessDetectionFlutterPluginPlugin = FacialLivenessDetectionFlutterPlugin();
 
   @override
@@ -30,18 +29,12 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
     try {
       _FacialLivenessDetectionFlutterPluginPlugin.initEngine();
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
   }
 
@@ -51,16 +44,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin examxxxple app'),
+          title: const Text('活体检测测试DEMO'),
         ),
         body: Column(
           children:[
-            Text('Running on: $_platformVersion\n'),
             ElevatedButton(onPressed: () async {
               print('button pressed!');
               Map<String, dynamic> config = {
-                "livingType": 23,
-                "age": 30,
+                "livingType": 6, // 活体类型
+                "language": "EN" // 界面显示的语言（不分大小写），“CN”:中文，“TCN”： 繁体中文， “JP”: 日文，"KR": 韩文， “EN”: 英文，“THA”: 泰文
               };
 
               // 1. 认证初始化
@@ -71,7 +63,7 @@ class _MyAppState extends State<MyApp> {
               print("msg" + result['msg']);
               print("data" + result['data']);
               if(code == "ELD_SUCCESS"){
-                2. 获取认证TOKEN (认证授权)
+                // 2. 获取认证TOKEN (认证授权)
                 Map<String, dynamic> initResBody = await init(initMsg);
                 if(initResBody.containsKey('token')){
                   // 3. 发起活体认证，进行数据采集
@@ -85,7 +77,7 @@ class _MyAppState extends State<MyApp> {
                   print(verifyResBody);
                 }
               }
-            }, child: Text('启动刷脸'))
+            }, child: Text('开始活体检测'))
           ]
         )
       ),

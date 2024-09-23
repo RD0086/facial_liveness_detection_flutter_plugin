@@ -64,10 +64,10 @@ tasks.withType(JavaCompile) {
 
 repositories {
     flatDir {
-        dirs 'libs'
+        dirs '../../../android/libs'
     }
 }
 
 dependencies{
-    implementation(name: 'esfaceauth-debug', ext: 'aar')
+    implementation(name: 'esfaceauth-release', ext: 'aar')
 }

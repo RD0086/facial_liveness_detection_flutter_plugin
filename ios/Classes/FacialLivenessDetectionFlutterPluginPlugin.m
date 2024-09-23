@@ -12,11 +12,11 @@
 
 - (UIViewController *)topViewController {
     UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
+
     while (topViewController.presentedViewController) {
         topViewController = topViewController.presentedViewController;
     }
-    
+
     return topViewController;
 }
 
@@ -59,78 +59,78 @@
                   [ldtResult initWithCode:ELD_PARAME_ERROR msg:@"未包括参数livingType" data: @""];
                   break;
               }
-              
+
               bool uploadLogOnError =  [[options objectForKey:@"uploadLogOnError"] boolValue];
               if (uploadLogOnError) {
 //                  [LogManager startUpLog];
               }
-              
+
               if([[options allKeys] containsObject: @"autoUploadVeirfyMsg"]){
                   bool isAutoUploadVerifyMsg = [[options objectForKey:@"autoUploadVeirfyMsg"] boolValue];
                   [[EsLivingDetectionManager LivingConfigInstance]SetIsAutoUploadVerifyMsg:isAutoUploadVerifyMsg];
               }
-              
+
               if([[options allKeys] containsObject: @"backGroundColor"]){
                   NSString * value = [[options objectForKey:@"backGroundColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setBackGroundColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"progressStaGradient"]){
                   NSString * value = [[options objectForKey:@"progressStaGradient"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setProgressStaGradient:value];
               }
-              
+
               if([[options allKeys] containsObject: @"progressEndGradient"]){
                   NSString * value = [[options objectForKey:@"progressEndGradient"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setProgressEndGradient:value];
               }
-              
+
               if([[options allKeys] containsObject: @"progressBgColor"]){
                   NSString * value = [[options objectForKey:@"progressBgColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setProgressBgColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"progressBorderColor"]){
                   NSString * value = [[options objectForKey:@"progressBorderColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setProgressBorderColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"textColor"]){
                   NSString * value = [[options objectForKey:@"textColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setTextColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"progressWidth"]){
                   NSInteger value = [[options objectForKey:@"progressWidth"] intValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setProgressWidth:value];
               }
-              
+
               if([[options allKeys] containsObject: @"exitBtnColor"]){
                   NSString * value = [[options objectForKey:@"exitBtnColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setExitBtnColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"ldtLabelNormalColor"]){
                   NSString * value = [[options objectForKey:@"ldtLabelNormalColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setLdtLabelNormalColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"ldtLabelProcessColor"]){
                   NSString * value = [[options objectForKey:@"ldtLabelProcessColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setLdtLabelProcessColor:value];
               }
-              
+
               if([[options allKeys] containsObject: @"ldtLabelCompleteColor"]){
                   NSString * value = [[options objectForKey:@"ldtLabelCompleteColor"] stringValue];
                   [[EsLivingDetectionManager LivingViewStyleInstance]setLdtLabelCompleteColor:value];
               }
-              
+
               ldtResult = [EsLivingDetectionManager verifyInit:livingType.intValue];
-          }while (NO);
+          } while (NO);
       } @catch(NSException* e) {
           [ldtResult initWithCode:ELD_EXCEPTION msg:e.reason data: @""];
       }
-      
+
       result([self ldtResult2String:ldtResult]);
   }
   else if([@"startLivingDetect" isEqualToString:call.method]){
@@ -146,7 +146,7 @@
                   result([self ldtResult2String:ldtResult]);
                   break;
               }
-              
+
               [EsLivingDetectionManager startDetect2:token viewController:[self topViewController] callback:^(EsLivingDetectResult * _Nonnull ldtResult) {
                   result([self ldtResult2String:ldtResult]);
               } windowSwitchType:2];
