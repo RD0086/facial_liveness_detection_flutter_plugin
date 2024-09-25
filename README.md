@@ -1,6 +1,8 @@
 ## 概述
 人脸活体检测，支持静默，炫彩，眨眼，张嘴，摇头，点头，远近及随意动作组合，支持Android,IOS,H5,小程序等 (***可用于实人认证，刷脸认证，活体检测等场景***)
 
+插件地址： https://pub.dev/packages/facial_liveness_detection_flutter_plugin/example
+
 ## 演示视频
 ![](http://open.esandcloud.com/index.php/s/78XA91wLQV2y36B/download)
 
