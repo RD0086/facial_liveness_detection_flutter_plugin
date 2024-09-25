@@ -125,6 +125,31 @@
                   [[EsLivingDetectionManager LivingViewStyleInstance]setLdtLabelCompleteColor:value];
               }
 
+              if([[options allKeys] containsObject: @"language"]){
+                  NSString * value = [options objectForKey:@"language"];
+                  int language = CN;
+                  if ([value isEqualToString: @"CN"]) {
+                      language = CN;
+                  }
+                  else if ([value isEqualToString: @"TCN"]) {
+                      language = TCN;
+                  }
+                  else if ([value isEqualToString: @"EN"]) {
+                      language = EN;
+                  }
+                  else if ([value isEqualToString: @"JP"]) {
+                      language = JP;
+                  }
+                  else if ([value isEqualToString: @"KR"]) {
+                      language = KR;
+                  }
+                  else if ([value isEqualToString: @"THA"]) {
+                      language = THA;
+                  }
+
+                  [[EsLivingDetectionManager LivingConfigInstance] SetLanguage: language];
+              }
+
               ldtResult = [EsLivingDetectionManager verifyInit:livingType.intValue];
           } while (NO);
       } @catch(NSException* e) {
