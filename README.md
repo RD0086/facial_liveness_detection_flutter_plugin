@@ -4,7 +4,8 @@
 插件地址： https://pub.dev/packages/facial_liveness_detection_flutter_plugin/example
 
 ## 演示视频
-![](http://open.esandcloud.com/index.php/s/78XA91wLQV2y36B/download)
+
+![](imgs/demo.gif)
 
 ## 插件API接口说明
 
@@ -68,15 +69,14 @@ Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){
 
 ## 页面样式修改
 #### Android
-![ANDRIOID STYLE](http://open.esandcloud.com/index.php/s/D44uyRlrzr3TQqQ/download)
+![ANDRIOID STYLE](imgs/android_style.png)
 
 #### IOS
-![IOS STYLE](http://open.esandcloud.com/index.php/s/GUYKKqsADNOD9uY/download)
+![IOS STYLE](imgs/ios_style.png)
 
 ## 其他信息
-1. 完整接入文档：[https://esandinfo.yuque.com/books/share/ba12bf8a-aead-48d5-ad01-be959670af6f?#](https://esandinfo.yuque.com/books/share/ba12bf8a-aead-48d5-ad01-be959670af6f?#)
-2. 服务器端协议文档：[https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001](https://market.aliyun.com/products/57124001/cmapi00046021.html#sku=yuncode4002100001)
-3. 后端管理控制台地址: [http://openali.esandcloud.com](http://openali.esandcloud.com)
+1. 完整接入文档：https://esandinfo.yuque.com/yv6e1k/aa4qsg/hpxvm3vphsq4oh3g
+3. 后端管理控制台地址: http://openali.esandcloud.com
 4. 技术支持/定制化开发请联系
 ```
 微信：esand_info
@@ -84,4 +84,4 @@ qq: 3626921591
 电话：13691664797
 邮箱：reid.li@foxmail.com
 ```
-![wechatqrcode](http://open.esandcloud.com/index.php/s/Lgxsc4ll9DLHvbR/download)
+![wechatqrcode](imgs/qrcode.jpeg)
