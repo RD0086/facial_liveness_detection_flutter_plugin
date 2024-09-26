@@ -12,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp();
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -52,7 +52,8 @@ class _MyAppState extends State<MyApp> {
               print('button pressed!');
               Map<String, dynamic> config = {
                 "livingType": 6, // 活体类型
-                "language": "THA" // 界面显示的语言（不分大小写），“CN”:中文，“TCN”： 繁体中文， “JP”: 日文，"KR": 韩文， “EN”: 英文，“THA”: 泰文
+                "language": "THA", // 界面显示的语言（不分大小写），“CN”:中文，“TCN”： 繁体中文， “JP”: 日文，"KR": 韩文， “EN”: 英文，“THA”: 泰文
+                "autoUploadVeirfyMsg": true // 是否直接从 SDK 上传认证信息，默认为 true
               };
 
               // 1. 认证初始化

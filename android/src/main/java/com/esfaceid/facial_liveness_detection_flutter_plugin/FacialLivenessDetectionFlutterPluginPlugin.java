@@ -180,6 +180,11 @@ public class FacialLivenessDetectionFlutterPluginPlugin implements FlutterPlugin
         }
       }
 
+      if(options.containsKey("autoUploadVeirfyMsg")) {
+        Boolean isAutoUploadVerifyMsg = (Boolean) options.get("autoUploadVeirfyMsg");
+        EsLivingDetectionManager.s_isAutoUploadVerifyMsg = isAutoUploadVerifyMsg;
+      }
+
       esLivingDetectResult = manager.verifyInit(config);
       result.success(JSONObject.toJSONString((esLivingDetectResult)));
     }

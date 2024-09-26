@@ -1,7 +1,6 @@
 name: facial_liveness_detection_flutter_plugin
 description: 人脸活体检测，支持静默，炫彩，眨眼，张嘴，摇头，点头，远近及随意动作组合，支持Android,IOS,H5,小程序等
-version: 1.2.0
-author: es_sz_rd
+version: 1.2.1
 homepage: "https://gitee.com/szrd2023/facial_liveness_detection_flutter_plugin"
 
 environment:

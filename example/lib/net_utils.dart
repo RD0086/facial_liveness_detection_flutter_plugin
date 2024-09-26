@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
  *    c. Golang : https://gitee.com/szrd2023/es-gateway-sdk-go
  */
 
-String APPCODE = "TODO"; // 替换为你的APPCODE
+String APPCODE = "fa4ad18a074b4307bfd4f399e97ff526"; // 替换为你的APPCODE
 String generateRandomNonce() {
   // 生成随机数作为 X-Ca-Nonce 的值
   final random = Random();
