@@ -5,7 +5,10 @@
 
 ## 演示视频
 
-![](imgs/demo.gif)
+![DEMO](imgs/demo.gif)
+
+
+- H5 体验DEMO链接 ： https://dev.esandcloud.com/h5demo/esand/living
 
 ## 插件API接口说明
 
