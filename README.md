@@ -5,7 +5,7 @@
 
 ## 演示视频
 
-![DEMO](imgs/demo.gif)
+![DEMO](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/demo.gif?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=1769821417&Signature=HXwFnKTjPQmXO%2FsrImIqHnh5whg%3D)
 
 
 - H5 体验DEMO链接 ： https://dev.esandcloud.com/h5demo/esand/living
@@ -72,10 +72,10 @@ Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){
 
 ## 页面样式修改
 #### Android
-![ANDRIOID STYLE](imgs/android_style.png)
+![ANDRIOID STYLE](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/android_style.png?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2093821453&Signature=GXQU74nxhXjDHxc%2FpJ36jjH04Q4%3D)
 
 #### IOS
-![IOS STYLE](imgs/ios_style.png)
+![IOS STYLE](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/ios_style.png?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2093821474&Signature=dE1bs7FfBQRtOsaBoOuuZf%2FhdLs%3D)
 
 ## 其他信息
 1. 完整接入文档：https://esandinfo.yuque.com/yv6e1k/aa4qsg/hpxvm3vphsq4oh3g
@@ -87,4 +87,4 @@ qq: 3626921591
 电话：13691664797
 邮箱：reid.li@foxmail.com
 ```
-![wechatqrcode](imgs/qrcode.jpeg)
+![wechatqrcode](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/qrcode.jpeg?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2093821494&Signature=0ZxihWJ5cBWt%2F72bz%2Bahu2z272c%3D)
