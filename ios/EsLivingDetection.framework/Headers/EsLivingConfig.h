@@ -18,6 +18,24 @@ typedef enum CRYPT_KEY_TYPE{
     TEST
 }CRYPT_KEY_TYPE;
 
+/**
+ * 支持的语言
+ */
+typedef enum LANGUAGE_E {
+    // 简体中文
+    CN,
+    // 繁体中文
+    TCN,
+    // 英文
+    EN,
+    // 日文
+    JP,
+    // 韩文
+    KR,
+    // 泰文
+    THA
+} LANGUAGE_E;
+
 static NSString* BaseURL;
 
 /**
@@ -107,6 +125,14 @@ static NSString* BaseURL;
  * 获取服务器基地址
  */
 + (NSString*) GetBaseURL;
+/**
+ * 语言设置
+ */
+- (void) SetLanguage:(LANGUAGE_E)value;
+/**
+ * 语言设置
+ */
+- (int) GetLanguage;
 @end
 
 NS_ASSUME_NONNULL_END
