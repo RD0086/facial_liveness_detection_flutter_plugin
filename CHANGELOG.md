@@ -32,3 +32,8 @@
 ---
 - [IOS]
     - fix some bug
+
+
+## 1.4.1（2025.05.07
+---
+- return video path
