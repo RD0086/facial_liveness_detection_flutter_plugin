@@ -27,6 +27,7 @@ void initEngine()
  * @param options(JSONObject), 包括如下字段：
  *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴，6: 炫彩
  *                  支持多动作，如传入12表示先做远近活体，后做眨眼活体，一次最多支持4组动作
+ *     recordVideo: bool 值，true : 录制视频，false: 不录制视频 (默认值)
  *     textColor：界面样式-字体颜色
  *     progressColor：界面样式-进度条颜色
  *     progressBgColor：界面样式-进度条背景颜色
@@ -65,6 +66,7 @@ Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> jsonData){
   *      "msg":”成功“, -- 执行结果描述
   *      "data": "......" -- 执行结果数据
   *      "token": "" -- 本次认证token
+  *      "videoABSPath": “” -- 录制的视频文件的绝对路径 (只有打开视频录制才会有，默认视频录制不打开)
   * }
   */
 Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){

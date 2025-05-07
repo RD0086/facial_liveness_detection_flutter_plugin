@@ -21,11 +21,13 @@
 }
 
 - (NSString*)ldtResult2String:(EsLivingDetectResult*)ldtResult{
+    NSString *videoPath = [EsLivingDetectionManager GetLdtVideoFilePath: ldtResult.token];
     NSDictionary *dataDictionary = @{
         @"code": [ldtResult getCodeStr],
         @"data": ldtResult.data == nil ? @"" : ldtResult.data,
         @"msg": ldtResult.msg == nil ? @"" : ldtResult.msg,
         @"token": ldtResult.token == nil ? @"" : ldtResult.token
+        @"videoPath": videoPath == nil ? @"" : videoPath
     };
 
     NSError *error;
@@ -63,6 +65,11 @@
               bool uploadLogOnError =  [[options objectForKey:@"uploadLogOnError"] boolValue];
               if (uploadLogOnError) {
 //                  [LogManager startUpLog];
+              }
+
+              if([[options allKeys] containsObject: @"recordVideo"]){
+                  bool recordVideo = [[options objectForKey:@"recordVideo"] boolValue];
+                  [[EsLivingDetectionManager LivingConfigInstance]SetIsRecordLdtVideo:recordVideo];
               }
 
               if([[options allKeys] containsObject: @"autoUploadVeirfyMsg"]){
@@ -173,7 +180,10 @@
               }
 
               [EsLivingDetectionManager startDetect2:token viewController:[self topViewController] callback:^(EsLivingDetectResult * _Nonnull ldtResult) {
-                  result([self ldtResult2String:ldtResult]);
+                
+                NSString* retMsg = [self ldtResult2String:ldtResult];
+                
+                result(retMsg);
               } windowSwitchType:2];
           }while (NO);
       } @catch(NSException* e) {

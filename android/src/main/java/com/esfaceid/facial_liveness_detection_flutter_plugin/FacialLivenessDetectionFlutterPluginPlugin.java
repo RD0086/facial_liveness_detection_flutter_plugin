@@ -101,6 +101,10 @@ public class FacialLivenessDetectionFlutterPluginPlugin implements FlutterPlugin
         EsLivingDetectionManager.s_isAutoUploadVerifyMsg = (boolean) options.get("isAutoUploadVerify");
       }
 
+      if(options.containsKey("recordVideo")) {
+        EsLivingDetectionManager.s_isOpenVideoRecorder = (boolean) options.get("recordVideo");
+      }
+
       if(options.containsKey("textColor")){
         EsLivingDetectionManager.LivingViewStyleInstance().setTextColor((String) options.get("textColor"));
       }
