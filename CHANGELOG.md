@@ -37,3 +37,8 @@
 ## 1.4.1（2025.05.07
 ---
 - return video path
+
+## 1.5.0（2025.09.28
+---
+- [Android] fix some bugs
+- [Android] improve colorfull liveness detection algorithem
