@@ -42,3 +42,7 @@
 ---
 - [Android] fix some bugs
 - [Android] improve colorfull liveness detection algorithem
+
+## 1.5.1（2025.11.13
+---
+- [Android] fix some bugs
