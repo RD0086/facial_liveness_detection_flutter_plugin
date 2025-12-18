@@ -1,92 +1,113 @@
 ## 概述
-人脸活体检测，支持静默，炫彩，眨眼，张嘴，摇头，点头，远近及随意动作组合，支持Android,IOS,H5,小程序等 (***可用于实人认证，刷脸认证，活体检测等场景***)
+人脸活体检测插件，支持静默、炫彩、眨眼、张嘴、摇头、点头、远近及随意动作组合，覆盖 Android / iOS / H5 / 小程序 等多端形态（可用于实人认证、刷脸认证、活体检测等场景）。
 
-插件地址： https://pub.dev/packages/facial_liveness_detection_flutter_plugin/example
+- 插件地址： https://pub.dev/packages/facial_liveness_detection_flutter_plugin
+- H5 体验 DEMO： https://dev.esandcloud.com/h5demo/esand/living
 
-## 演示视频
+## 特性
+- 多动作组合：单次最多支持 4 组组合动作
+- 可选视频录制：支持将本次认证视频保存到本地
+- 丰富的界面定制：进度条、文字、背景、渐变色、导航样式等
+- 多语言：`CN`、`TCN`、`EN`、`JP`、`KR`、`THA`
+- 统一错误码：便于接入与排查
 
-![DEMO](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/demo.gif?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=1769821417&Signature=HXwFnKTjPQmXO%2FsrImIqHnh5whg%3D)
+## 安装
+- 在项目 `pubspec.yaml` 中添加依赖：
+  ```yaml
+  dependencies:
+    facial_liveness_detection_flutter_plugin: ^1.5.2
+  ```
+- 执行：`flutter pub get`
 
+## 平台配置
+- iOS
+  - iOS 11+
+  - 在 `Info.plist` 增加相机权限：
+    ```xml
+    <key>NSCameraUsageDescription</key>
+    <string>需要使用相机进行人脸活体检测</string>
+    ```
+  - 若开启视频录制，可能需要麦克风权限：
+    ```xml
+    <key>NSMicrophoneUsageDescription</key>
+    <string>需要使用麦克风以优化录制体验</string>
+    ```
+- Android
+  - 确保应用已声明相机权限（插件在运行期进行权限处理）：
+    ```xml
+    <uses-permission android:name="android.permission.CAMERA" />
+    ```
 
-- H5 体验DEMO链接 ： https://dev.esandcloud.com/h5demo/esand/living
+## 快速开始
+```dart
+import 'package:facial_liveness_detection_flutter_plugin/facial_liveness_detection_flutter_plugin.dart';
 
-## 插件API接口说明
+final plugin = FacialLivenessDetectionFlutterPlugin();
 
-#### 引擎初始化
-```java
-/**
- * 引擎初始化
- */
-void initEngine()
+// 1) 初始化引擎
+plugin.initEngine();
+
+// 2) 初始化认证（示例：远近 + 眨眼，并开启录制）
+final initRes = await plugin.verifyInit({
+  "livingType": 12,
+  "recordVideo": true,
+  "language": "CN",
+  "textColor": "#333333",
+  "progressBgColor": "#F3F4F6",
+});
+
+// 服务端获取到 token 后，3) 发起活体认证
+final verifyRes = await plugin.startLivingDetect({
+  "token": "<服务端返回的token>",
+  "cameraID": "REAR"
+});
 ```
 
-#### 认证初始化
-```java
-/**
- * 初始化
- * @param options(JSONObject), 包括如下字段：
- *     livingType：认证类型  1：远近，2：眨眼，3：摇头，4: 点头，5:张嘴，6: 炫彩
- *                  支持多动作，如传入12表示先做远近活体，后做眨眼活体，一次最多支持4组动作
- *     recordVideo: bool 值，true : 录制视频，false: 不录制视频 (默认值)
- *     textColor：界面样式-字体颜色
- *     progressColor：界面样式-进度条颜色
- *     progressBgColor：界面样式-进度条背景颜色
- *     progressStaGradient：界面样式-进度条渐变开始颜色
- *     progressEndGradient：界面样式-进度条渐变结束颜色
- *     backGroundColor：界面样式-页面背景颜色
- *     circleBackWidth：界面样式-进度条宽度
- *     language: 界面显示的语言（不分大小写），“CN”:中文，“TCN”： 繁体中文， “JP”: 日文，"KR": 韩文， “EN”: 英文，“THA”: 泰文
- *     autoUploadVeirfyMsg: boolean 是否直接从 SDK 上传认证信息，默认为 true
- *     visitedStepBorderDotColor：多动作导航的边框颜色, 如 #FFC0CB
- *     visitedStepFillDotColor： 完成步骤点的填充颜色, 如 #FFC0CB
- *     nextStepBorderDotColor： 下一步骤点的填充颜色, 如 #FFC0CB
- *     nextStepFillDotColor： 下一步骤点的填充颜色, 如 #FFC0CB
- *     visitedStepSeparatorColor：  当前步骤条的颜色, 如 #FFC0CB
- *     nextStepSeparatorColor： 下一步步骤条的颜色, 如 #FFC0CB
- *     exitIcon： 退出按钮图片（BASE64字符串）
- * @return 包括如下几个字段
- * {
- *    "code": ”ELD_SUCCESS“, -- ELD_SUCCESS：成功，ELD_FAILED：失败，ELD_PARAME_ERROR：参数异常，ELD_EXCEPTION：发生异常，ELD_UNSUPPORT：不支持此活体类型
- *    "msg":”成功“, -- 执行结果描述
- *    "data": "......" -- 执行结果数据
- * }
- */
-Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> jsonData){
- ```
+## API
+### `void initEngine()`
+- 初始化引擎，无入参
+- 成功时返回：`{"code":"ELD_SUCCESS","msg":"初始化引擎成功","data":""}`
 
- #### 发起活体认证
- ```java
- /**
-  * 执行活体认证
-  * @param options(JSONObject), 包括如下字段：
-  *     token：认证初始化服务器端返回的数据
-  * @param 包括如下几个字段
-  * {
-  *      "code": ”ELD_SUCCESS“, -- ELD_SUCCESS：成功，ELD_FAILED：失败，ELD_PARAME_ERROR：参数异常，ELD_EXCEPTION：发生异常，ELD_TIMEOUT：执行超时，ELD_PERMISSION：无法获取相机授权，ELD_CANCEL: 用户主动退出
-  *      "msg":”成功“, -- 执行结果描述
-  *      "data": "......" -- 执行结果数据
-  *      "token": "" -- 本次认证token
-  *      "videoABSPath": “” -- 录制的视频文件的绝对路径 (只有打开视频录制才会有，默认视频录制不打开)
-  * }
-  */
-Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params){
-```
+### `Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> options)`
+- 入参（常用）：
+  - `livingType`：认证类型。1：远近，2：眨眼，3：摇头，4：点头，5：张嘴，6：炫彩。可组合，如 `12` 表示远近 + 眨眼，最多 4 组
+  - `recordVideo`：`true/false` 是否录制视频（默认 `false`）
+  - `language`：界面语言，`CN`/`TCN`/`EN`/`JP`/`KR`/`THA`
+  - 样式相关：`textColor`、`progressBgColor`、`progressStaGradient`、`progressEndGradient`、`backGroundColor`、`circleBackWidth`、导航样式颜色等
+- 返回：
+  - `code`、`msg`、`data`、`token`、`videoPath`（仅在开启录制且有视频时返回）
 
-## 页面样式修改
+### `Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params)`
+- 入参：
+  - `token`：认证初始化后服务端返回的 token
+  - 可选：`cameraID`：`REAR`/`FRONT`（后置/前置），具体取值由接入方约定
+- 返回：
+  - `code`、`msg`、`data`、`token`、`videoPath`（仅在开启录制且有视频时返回）
+
+### 错误码
+- `ELD_SUCCESS`：成功
+- `ELD_FAILED`：失败
+- `ELD_PARAME_ERROR`：参数异常
+- `ELD_EXCEPTION`：发生异常
+- `ELD_UNSUPPORT`：不支持此活体类型
+- `ELD_TIMEOUT`：执行超时
+- `ELD_PERMISSION`：无法获取相机授权
+- `ELD_CANCEL`：用户主动退出
+
+## 页面样式示例
 #### Android
 ![ANDRIOID STYLE](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/android_style.png?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2093821453&Signature=GXQU74nxhXjDHxc%2FpJ36jjH04Q4%3D)
 
-#### IOS
+#### iOS
 ![IOS STYLE](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/ios_style.png?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2093821474&Signature=dE1bs7FfBQRtOsaBoOuuZf%2FhdLs%3D)
 
 ## 其他信息
-1. 完整接入文档：https://esandinfo.yuque.com/yv6e1k/aa4qsg/hpxvm3vphsq4oh3g
-3. 后端管理控制台地址: http://openali.esandcloud.com
-4. 技术支持/定制化开发请联系
-```
-微信：esand_info
-qq: 3626921591
-电话：13691664797
-邮箱：reid.li@foxmail.com
-```
+- 完整接入文档：https://esandinfo.yuque.com/yv6e1k/aa4qsg/hpxvm3vphsq4oh3g
+- 后端管理控制台地址： http://openali.esandcloud.com
+- 技术支持 / 定制化开发：
+  - 微信：`esand_info`
+  - QQ：`3626921591`
+  - 电话：`13691664797`
+  - 邮箱：`reid.li@foxmail.com`
+
 ![wechatqrcode](https://rd-esand-dev.oss-cn-shanghai.aliyuncs.com/imgs/facial_liveness_detection_flutter_plugin/imgs/qrcode.jpeg?OSSAccessKeyId=LTAI5tNZJG7Rz5icyxCpxDNg&Expires=2093821494&Signature=0ZxihWJ5cBWt%2F72bz%2Bahu2z272c%3D)

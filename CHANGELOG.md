@@ -46,3 +46,7 @@
 ## 1.5.1（2025.11.13
 ---
 - [Android] fix some bugs
+
+## 1.5.2（2025.12.18
+---
+- [IOS] fix some bugs
