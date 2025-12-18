@@ -26,7 +26,7 @@
         @"code": [ldtResult getCodeStr],
         @"data": ldtResult.data == nil ? @"" : ldtResult.data,
         @"msg": ldtResult.msg == nil ? @"" : ldtResult.msg,
-        @"token": ldtResult.token == nil ? @"" : ldtResult.token
+        @"token": ldtResult.token == nil ? @"" : ldtResult.token,
         @"videoPath": videoPath == nil ? @"" : videoPath
     };
 
