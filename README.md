@@ -15,7 +15,7 @@
 - 在项目 `pubspec.yaml` 中添加依赖：
   ```yaml
   dependencies:
-    facial_liveness_detection_flutter_plugin: ^1.5.2
+    facial_liveness_detection_flutter_plugin: ^1.6.0
   ```
 - 执行：`flutter pub get`
 
@@ -65,24 +65,53 @@ final verifyRes = await plugin.startLivingDetect({
 
 ## API
 ### `void initEngine()`
-- 初始化引擎，无入参
-- 成功时返回：`{"code":"ELD_SUCCESS","msg":"初始化引擎成功","data":""}`
+- 功能：全局初始化引擎，必须在调用其他方法前执行
+- 入参：无
+- 返回：无返回值（同步方法）
+- 注意：此方法会调用 `EsLivingDetectionManager.Init()` 进行全局初始化
 
 ### `Future<Map<String, dynamic>?> verifyInit(Map<String, dynamic> options)`
-- 入参（常用）：
-  - `livingType`：认证类型。1：远近，2：眨眼，3：摇头，4：点头，5：张嘴，6：炫彩。可组合，如 `12` 表示远近 + 眨眼，最多 4 组
-  - `recordVideo`：`true/false` 是否录制视频（默认 `false`）
-  - `language`：界面语言，`CN`/`TCN`/`EN`/`JP`/`KR`/`THA`
-  - 样式相关：`textColor`、`progressBgColor`、`progressStaGradient`、`progressEndGradient`、`backGroundColor`、`circleBackWidth`、导航样式颜色等
+- 入参：
+  - `livingType`（必需）：认证类型。1：远近，2：眨眼，3：摇头，4：点头，5：张嘴，6：炫彩。可组合，如 `12` 表示远近 + 眨眼，最多 4 组
+  - `recordVideo`（可选）：`true/false` 是否录制视频（默认 `false`）
+  - `language`（可选）：界面语言，`CN`/`TCN`/`EN`/`JP`/`KR`/`THA`（默认 `CN`）
+  - `isAutoUploadVerify`（可选）：`true/false` 是否自动上传验证消息
+  - `autoUploadVeirfyMsg`（可选）：`true/false` 自动上传验证消息（注意拼写）
+  - `uploadLogOnError`（可选）：`true/false` 错误时是否上传日志
+  - 样式相关参数（可选）：
+    - `textColor`：文字颜色（十六进制颜色值，如 `#333333`）
+    - `progressBgColor`：进度条背景颜色
+    - `progressStaGradient`：进度条起始渐变色
+    - `progressEndGradient`：进度条结束渐变色
+    - `progressColor`：进度条颜色
+    - `backGroundColor`：背景颜色
+    - `circleBackWidth`：圆形背景宽度（Integer）
+    - `visitedStepBorderDotColor`：已访问步骤边框点颜色
+    - `visitedStepFillDotColor`：已访问步骤填充点颜色
+    - `nextStepBorderDotColor`：下一步骤边框点颜色
+    - `nextStepFillDotColor`：下一步骤填充点颜色
+    - `visitedStepSeparatorColor`：已访问步骤分隔线颜色
+    - `nextStepSeparatorColor`：下一步骤分隔线颜色
+    - `exitIcon`：退出图标（String）
 - 返回：
-  - `code`、`msg`、`data`、`token`、`videoPath`（仅在开启录制且有视频时返回）
+  - `code`：错误码（如 `ELD_SUCCESS`）
+  - `msg`：返回消息
+  - `data`：返回数据
+  - `token`：认证令牌
+  - `videoPath`（可选）：仅在开启录制且有视频时返回
 
 ### `Future<Map<String, dynamic>?> startLivingDetect(Map<String, dynamic> params)`
 - 入参：
-  - `token`：认证初始化后服务端返回的 token
-  - 可选：`cameraID`：`REAR`/`FRONT`（后置/前置），具体取值由接入方约定
+  - `token`（必需）：认证初始化后服务端返回的 token
+  - `cameraID`（可选）：摄像头选择，`FRONT`（前置摄像头，映射为 "1"）或 `REAR`（后置摄像头，映射为 "0"），默认使用前置摄像头（"1"）
 - 返回：
-  - `code`、`msg`、`data`、`token`、`videoPath`（仅在开启录制且有视频时返回）
+  - `code`：错误码（如 `ELD_SUCCESS`）
+  - `msg`：返回消息
+  - `data`：返回数据
+  - `token`：认证令牌
+  - `videoPath`（可选）：仅在开启录制且有视频时返回
+- 注意：
+  - 调用前需先执行 `initEngine()` 和 `verifyInit()`，否则会返回参数错误
 
 ### 错误码
 - `ELD_SUCCESS`：成功

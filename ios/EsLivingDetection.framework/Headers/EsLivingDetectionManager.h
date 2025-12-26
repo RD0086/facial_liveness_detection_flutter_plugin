@@ -12,12 +12,24 @@
 #import "EsLivingViewStyle.h"
 #import "EsLivingConfig.h"
 
+// OCR功能控制宏，默认不编译
+// 如需启用OCR功能，请在编译时定义 ENABLE_OCR=1
+#ifndef ENABLE_OCR
+#define ENABLE_OCR 0
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * 活体检测管理类
  */
 @interface EsLivingDetectionManager : NSObject
+
+/**
+ * 初始化引擎，此方法建议提前调用，比较耗时
+ * 如果没有提前调用将在调用 verifyInit 接口 自动调用InitEngine 接口
+ */
++ (void) InitEngine;
 
 /**
  * 认证初始化
@@ -70,9 +82,10 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)GetLdtVideoFilePath:(NSString *)token;
 
 /**
- * 获取活体检测的视频存放根路径
- * @return 文件的路径
+ * 根据 Token 生成标准的视频文件路径（不检查文件是否存在）
  */
++(NSString *)GenerateVideoPath:(NSString *)token;
+
 +(NSString *)GetLdtVideoRootDirectory;
 
 /**
@@ -81,12 +94,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(NSString *)getSdkVersion;
 
+#if ENABLE_OCR
 /**
  * 开启ocr 人脸认证
  * @param viewController 当前viewController
  * @param type ocr类型 1: 使用
  */
 + (void) startOcrFaceAuth : (UIViewController*)viewController token:(NSString *)token callback:(EsLivingDetectCallback) callback;
+#endif // ENABLE_OCR
 
 @end
 
